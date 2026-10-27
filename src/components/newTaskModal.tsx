@@ -7,9 +7,14 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  FormControlLabel,
   IconButton,
+  Radio,
+  RadioGroup,
   Stack,
   TextField,
+  FormLabel,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -20,6 +25,8 @@ export interface NewTask {
   title: string;
   description: string;
   date: string;
+  important: boolean;
+  urgent: boolean;
 }
 
 interface NewTaskModalProps {
@@ -32,11 +39,15 @@ export default function NewTaskModal({ open, onClose, onCreate }: NewTaskModalPr
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState<Dayjs | null>(dayjs());
+  const [important, setImportant] = useState(false);
+  const [urgent, setUrgent] = useState(false);
 
   const resetForm = () => {
     setTitle('');
     setDescription('');
     setDate(dayjs());
+    setImportant(false);
+    setUrgent(false);
   };
 
   const handleSubmit = () => {
@@ -49,6 +60,8 @@ export default function NewTaskModal({ open, onClose, onCreate }: NewTaskModalPr
       title: trimmedTitle,
       description: description.trim(),
       date: date.format('DD-MM-YYYY'),
+      important,
+      urgent,
     });
     resetForm();
     onClose();
@@ -106,6 +119,32 @@ export default function NewTaskModal({ open, onClose, onCreate }: NewTaskModalPr
               onChange={setDate}
               slotProps={{ textField: { fullWidth: true, required: true } }}
             />
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
+              <FormControl>
+                <FormLabel id="important-label">Important</FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="important-label"
+                  value={important ? 'yes' : 'no'}
+                  onChange={(event) => setImportant(event.target.value === 'yes')}
+                >
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+              <FormControl>
+                <FormLabel id="urgent-label">Urgent</FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="urgent-label"
+                  value={urgent ? 'yes' : 'no'}
+                  onChange={(event) => setUrgent(event.target.value === 'yes')}
+                >
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+            </Stack>
           </Stack>
         </DialogContent>
         <DialogActions sx={{ px: 3, py: 2 }}>
