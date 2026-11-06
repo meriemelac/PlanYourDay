@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# Plan Your Day
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plan Your Day est une application web de gestion de tâches, actuellement en
+cours de développement. Elle permet de planifier les tâches de la journée et
+de les organiser selon leur date.
 
-Currently, two official plugins are available:
+## État actuel
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Le projet comprend pour le moment un frontend fonctionnel :
 
-## React Compiler
+- création d'une tâche avec un titre, une description et une date ;
+- indication du niveau d'importance et d'urgence ;
+- classement automatique des tâches dans les groupes **Today**, **Missed from past** et **Future** ;
+- interface responsive basée sur React, Material UI et Tailwind CSS ;
+- navigation initiale avec les vues « My day » et « Calendar ».
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Les tâches sont actuellement conservées uniquement dans l'état de l'application
+et sont perdues au rechargement de la page. Le dossier `Backend/` est réservé
+aux prochaines étapes du projet.
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19 et TypeScript ;
+- Vite ;
+- Material UI et MUI X Date Pickers ;
+- Tailwind CSS ;
+- Day.js ;
+- React Router.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prérequis
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 20 ou une version plus récente ;
+- npm.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+Depuis la racine du dépôt :
+
+```bash
+cd Frontend
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Développement
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Pour lancer le serveur de développement avec le rechargement automatique :
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+L'application sera disponible à l'adresse indiquée par Vite, généralement
+`http://localhost:5173`.
+
+## Scripts disponibles
+
+À exécuter depuis le dossier `Frontend/` :
+
+```bash
+npm run dev      # Lance le serveur de développement
+npm run build    # Vérifie TypeScript et génère le build de production
+npm run lint     # Lance ESLint
+npm run preview  # Prévisualise le build de production
+```
+
+## Structure du projet
+
+```text
+PlanYourDay/
+├── Backend/                 # Prévu pour l'API et la persistance
+├── Frontend/
+│   ├── public/              # Ressources publiques, dont le logo
+│   ├── src/
+│   │   ├── components/      # Barre supérieure, modale et groupes de tâches
+│   │   ├── App.tsx          # Composition principale de l'application
+│   │   └── routes.tsx       # Routes frontend
+│   ├── package.json
+│   └── vite.config.ts
+└── README.md
+```
+
+## Prochaines étapes prévues
+
+- ajouter une API backend et une base de données ;
+- conserver les tâches entre les sessions ;
+- implémenter les vues calendrier et profil ;
+- ajouter la modification, la suppression et la clôture des tâches ;
+- ajouter l'authentification des utilisateurs ;
+- compléter les tests automatisés.
