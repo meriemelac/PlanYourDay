@@ -33,21 +33,24 @@ export default function TaskGroups({ tasks }: TaskGroupsProps) {
       key: "today" as const,
       title: "Today",
       description: "Tasks planned for today",
-      color: "bg-blue-600",
+      color: "bg-blue-100",
+      borderColor: "border-blue-200",
       tasks: taskGroups.today,
     },
     {
       key: "missed" as const,
       title: "Missed from past",
       description: "Tasks whose planned date has passed",
-      color: "bg-red-600",
+      color: "bg-red-100",
+      borderColor: "border-red-200",
       tasks: taskGroups.missed,
     },
     {
       key: "future" as const,
       title: "Future",
       description: "Tasks planned for the coming days",
-      color: "bg-violet-600",
+      color: "bg-green-100",
+      borderColor: "border-green-200",
       tasks: taskGroups.future,
     },
   ];
@@ -55,22 +58,22 @@ export default function TaskGroups({ tasks }: TaskGroupsProps) {
   return (
     <section className="mt-8 flex flex-col gap-5" aria-label="Task groups">
       {groupDetails.map((group) => (
-        <section key={group.key} className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
-          <div className={`${group.color} px-5 py-4 text-white`}>
+        <section key={group.key} className={`overflow-hidden rounded-sm border border-xl ${group.borderColor}`}>
+          <div className={`${group.color} px-5 py-4 text-black border-b ${group.borderColor}`}>
             <div className="flex items-center justify-between gap-3">
               <h2 className="font-semibold">{group.title}</h2>
               <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-sm font-bold">
                 {group.tasks.length}
               </span>
             </div>
-            <p className="mt-1 text-sm text-white/80">{group.description}</p>
+            <p className="mt-1 text-sm text-gray-500">{group.description}</p>
           </div>
-          <div className="min-h-28 space-y-3 p-4">
+          <div className="min-h-28">
             {group.tasks.length === 0 ? (
               <p className="py-4 text-center text-sm text-gray-400">No tasks here</p>
             ) : (
               group.tasks.map((task, index) => (
-                <article key={`${task.date}-${task.title}-${index}`} className="rounded-xs bg-white p-4 shadow-sm">
+                <article key={`${task.date}-${task.title}-${index}`} className={`rounded-xs bg-white p-4 border-b ${group.borderColor}`}>
                   <h3 className="font-semibold text-gray-900">{task.title}</h3>
                   {task.description && <p className="mt-1 text-sm text-gray-600">{task.description}</p>}
                   <p className="mt-2 text-xs text-gray-500">{task.date}</p>
