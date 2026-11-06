@@ -1,89 +1,84 @@
 # Plan Your Day
 
-Plan Your Day est une application web de gestion de tâches, actuellement en
-cours de développement. Elle permet de planifier les tâches de la journée et
-de les organiser selon leur date.
+Plan Your Day is a task management web application currently under development. It allows users to plan their daily tasks and organize them by date.
 
-## État actuel
+## Current Status
 
-Le projet comprend pour le moment un frontend fonctionnel :
+The project currently includes a functional frontend with the following features:
 
-- création d'une tâche avec un titre, une description et une date ;
-- indication du niveau d'importance et d'urgence ;
-- classement automatique des tâches dans les groupes **Today**, **Missed from past** et **Future** ;
-- interface responsive basée sur React, Material UI et Tailwind CSS ;
-- navigation initiale avec les vues « My day » et « Calendar ».
+- Create tasks with a title, description, and date.
+- Set task importance and urgency levels.
+- Automatically organize tasks into the **Today**, **Missed from Past**, and **Future** groups.
+- Responsive interface built with React, Material UI, and Tailwind CSS.
+- Initial navigation with the "My Day" and "Calendar" views.
 
-Les tâches sont actuellement conservées uniquement dans l'état de l'application
-et sont perdues au rechargement de la page. Le dossier `Backend/` est réservé
-aux prochaines étapes du projet.
+Tasks are currently stored only in the application's state and are lost when the page is reloaded. The `Backend/` directory is reserved for future development.
 
 ## Technologies
 
-- React 19 et TypeScript ;
-- Vite ;
-- Material UI et MUI X Date Pickers ;
-- Tailwind CSS ;
-- Day.js ;
-- React Router.
+- React 19 and TypeScript
+- Vite
+- Material UI and MUI X Date Pickers
+- Tailwind CSS
+- Day.js
+- React Router
 
-## Prérequis
+## Prerequisites
 
-- Node.js 20 ou une version plus récente ;
-- npm.
+- Node.js 20 or later
+- npm
 
 ## Installation
 
-Depuis la racine du dépôt :
+From the repository root directory:
 
 ```bash
 cd Frontend
 npm install
 ```
 
-## Développement
+## Development
 
-Pour lancer le serveur de développement avec le rechargement automatique :
+To start the development server with hot module replacement:
 
 ```bash
 npm run dev
 ```
 
-L'application sera disponible à l'adresse indiquée par Vite, généralement
-`http://localhost:5173`.
+The application will be available at the URL provided by Vite, usually `http://localhost:5173`.
 
-## Scripts disponibles
+## Available Scripts
 
-À exécuter depuis le dossier `Frontend/` :
+Run these commands from the `Frontend/` directory:
 
 ```bash
-npm run dev      # Lance le serveur de développement
-npm run build    # Vérifie TypeScript et génère le build de production
-npm run lint     # Lance ESLint
-npm run preview  # Prévisualise le build de production
+npm run dev      # Starts the development server
+npm run build    # Checks TypeScript and generates the production build
+npm run lint     # Runs ESLint
+npm run preview  # Previews the production build
 ```
 
-## Structure du projet
+## Project Structure
 
 ```text
 PlanYourDay/
-├── Backend/                 # Prévu pour l'API et la persistance
+├── Backend/                 # Reserved for the API and data persistence
 ├── Frontend/
-│   ├── public/              # Ressources publiques, dont le logo
+│   ├── public/              # Public assets, including the logo
 │   ├── src/
-│   │   ├── components/      # Barre supérieure, modale et groupes de tâches
-│   │   ├── App.tsx          # Composition principale de l'application
-│   │   └── routes.tsx       # Routes frontend
+│   │   ├── components/      # App bar, modal, and task groups
+│   │   ├── App.tsx           # Main application component
+│   │   └── routes.tsx        # Frontend routes
 │   ├── package.json
 │   └── vite.config.ts
 └── README.md
 ```
 
-## Prochaines étapes prévues
+## Planned Features
 
-- ajouter une API backend et une base de données ;
-- conserver les tâches entre les sessions ;
-- implémenter les vues calendrier et profil ;
-- ajouter la modification, la suppression et la clôture des tâches ;
-- ajouter l'authentification des utilisateurs ;
-- compléter les tests automatisés.
+- Develop a backend API and integrate a database.
+- Persist tasks across sessions.
+- Implement the Calendar and Profile views.
+- Add task editing, deletion, and completion features.
+- Implement user authentication.
+- Expand automated test coverage.
